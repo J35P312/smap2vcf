@@ -49,7 +49,7 @@ def smap_to_vcf(smappath, refcmap, sample, vcfh) :
         vcftype = "BND"
         if svtype == "deletion":
             vcftype="DEL"
-        elif svtype == "insertion:
+        elif svtype == "insertion":
             vcftype = "INS"
         elif "inversion" in svtype:
             vcftype = "INV"
