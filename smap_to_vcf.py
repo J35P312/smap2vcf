@@ -115,8 +115,8 @@ def smap_to_vcf(smappath, refcmap, sample, vcfh) :
         if not vcftype == "BND":
             print ("%i\t%i\t.\tN\t<%s>\t%s\tPASS\tSVTYPE=%s"+si+"IRYSTYPE=%i" + si +"END=%i"+si+"SVLEN=%i"+si+"CIPOS=-%i,%i"+si+"CIEND=-%i,%i") % (ref, pos, vcftype, conf, vcftype,svtype, end, svlen, cipos, cipos, ciend, ciend) + "\tGT\t%s" % gt
         else:
-            chrB=ref = int(tokens[3])
-            posB=
+            chrB= int(tokens[3])
+            posB=end
             print ("%i\t%i\t.\tN\tN[%i:%i[\t%s\tPASS\tSVTYPE=%s"+si+"IRYSTYPE=%i" +si+"CIPOS=-%i,%i"+si+"CIEND=-%i,%i") % (ref, pos, chrB,posB, conf, vcftype,svtype, cipos, cipos, ciend, ciend) + "\tGT\t%s" % gt
     #end loop on input smap
     f1.close()
