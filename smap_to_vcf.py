@@ -161,14 +161,7 @@ def getArgs() :
     parser = argparse.ArgumentParser(description=description)
 
     parser.add_argument('-s', dest='smappath'   , help='Path to smap file to convert (required)', type=str) 
-    parser.add_argument('-r', dest='ref
-                        
-                        
-                        
-                        
-                        
-                        
-                        path', help='Path to reference cmap which is reffered to in the smap supplied as -s argument (required)', type=str)
+    parser.add_argument('-r', dest='refpath', help='Path to reference cmap which is reffered to in the smap supplied as -s argument (required)', type=str)
     defsamp = "Sample1"
     parser.add_argument('-n', dest='sample'     , help='Sample ID name for genotype data (optional, default "%s")'%defsamp, type=str, default=defsamp)
     result = parser.parse_args()
