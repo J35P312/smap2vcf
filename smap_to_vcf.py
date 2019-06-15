@@ -6,6 +6,7 @@ vcfheader_1='''##fileformat=VCFv4.2
 ##INFO=<ID=IRYSTYPE,Number=1,Type=String,Description="Type of structural variant"> 
 ##INFO=<ID=END,Number=1,Type=Integer,Description="End position of the variant described in this record">   
 ##INFO=<ID=SVLEN,Number=1,Type=Integer,Description="Difference in length between REF and ALT alleles">
+##INFO=<ID=QUERY,Number=1,Type=Integer,Description="Xmap query ID">
 ##ALT=<ID=DEL,Description="Deletion"> 
 ##ALT=<ID=INS,Description="Insertion">
 ##ALT=<ID=INV,Description="Inversion">
@@ -52,7 +53,7 @@ def smap_to_vcf(smappath, sample, vcfh) :
             vcftype = "INV"
         
         # 0 : SmapEntryID
-        #qry = tokens[1] #QryContigID
+        qry = tokens[1] #QryContigID
         ref = int(tokens[2]) #RefcontigID1 -- must be int bc refcmap keys are ints
         # 3 : RefcontigID2 
         refstart = float(tokens[6]) #RefStartPos
@@ -94,7 +95,7 @@ def smap_to_vcf(smappath, sample, vcfh) :
                tmp = end
                end = pos
                pos = tmp
-            INFO="END={};SVLEN={};SVTYPE={};IRYSTYPE={}".format(end,svlen,vcftype,svtype)
+            INFO="END={};SVLEN={};SVTYPE={};IRYSTYPE={};QUERY={}".format(end,svlen,vcftype,svtype,qry)
             vcf_line=[str(ref),str(pos),str(nent),"N","<" + vcftype + ">",str(conf),"PASS",INFO,"GT",gt]
             print "\t".join(vcf_line)
         else:
@@ -105,7 +106,7 @@ def smap_to_vcf(smappath, sample, vcfh) :
             elif chrB == 24:
                 chrB= "Y"
             posB=end
-            INFO="SVTYPE={};IRYSTYPE={}".format(vcftype,svtype)
+            INFO="SVTYPE={};IRYSTYPE={};QUERY={}".format(vcftype,svtype,qry)
             vcf_line=[str(ref),str(pos),str(nent),"N","N[" + str(chrB) + ":" + str(posB) + "[",conf,"PASS",INFO,"GT",gt]
             print "\t".join(vcf_line)
     #end loop on input smap
