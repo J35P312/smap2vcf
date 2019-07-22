@@ -7,7 +7,7 @@ vcfheader_1='''##fileformat=VCFv4.2
 ##INFO=<ID=END,Number=1,Type=Integer,Description="End position of the variant described in this record">   
 ##INFO=<ID=SVLEN,Number=1,Type=Integer,Description="Difference in length between REF and ALT alleles">
 ##INFO=<ID=QUERY,Number=1,Type=Integer,Description="Xmap query ID">
-##INFO=<ID=QUERYPOS,Number=2,Type=Integer,Description="start and end position within the xmap">
+##INFO=<ID=QUERYPOS,Number=2,Type=Integer,Description="Query start and end">
 ##ALT=<ID=DEL,Description="Deletion"> 
 ##ALT=<ID=INS,Description="Insertion">
 ##ALT=<ID=INV,Description="Inversion">
@@ -57,8 +57,8 @@ def smap_to_vcf(smappath, sample, vcfh) :
         qry = tokens[1] #QryContigID
         ref = int(tokens[2]) #RefcontigID1 -- must be int bc refcmap keys are ints
         
-        qrystart=int(float(tokens[6]))
-        qrystop=int(float(tokens[7]))
+        qrystart=int(float(tokens[4]))
+        qrystop=int(float(tokens[5]))
         # 3 : RefcontigID2 
         refstart = float(tokens[6]) #RefStartPos
         refstop  = float(tokens[7]) #RefEndPos
